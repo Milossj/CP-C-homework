@@ -3,27 +3,29 @@
 #include <string.h>
 #include <time.h>
 
-#define MAX_MISTAKES 6  // maximum number of mistakes allowed
+
+//we first define the number of allowed mistakes
+#define MAX_MISTAKES 6  
 
 int main() {
-  // array of possible words to choose from
-  const char *words[] = {"apple", "banana", "orange", "strawberry", "mango"};
+  //list of possible words...
+  const char *words[] = {"famnit", "bioinformatics", "dorm", "seaside", "computerpracticum"};
 
-  // choose a random word from the array
+  //random word from the nice list i put together
   srand(time(0));
   const char *word = words[rand() % 5];
 
   int word_length = strlen(word);
-  char guessed_letters[26] = {0};  // stores the letters that have been guessed
-  char current_state[50] = {0};   // stores the current state of the word being guessed
+  char guessed_letters[26] = {0};  //letters that have been guessed
+  char current_state[50] = {0};   // current state of the word being guessed
   int mistakes = 0;                // number of mistakes made so far
 
-  // initialize the current_state to be a series of underscores, one for each letter in the word
+  //making the current_state be a series of underscores, one for each letter in the word 
   for (int i = 0; i < word_length; i++) {
     current_state[i] = '_';
   }
 
-  // continue the game until the word is fully guessed or the maximum number of mistakes is reached
+  //game is going on until the full word has been guessed or not
   while (strcmp(word, current_state) != 0 && mistakes < MAX_MISTAKES) {
     printf("Current state: %s\n", current_state);
     printf("Enter a letter: ");
@@ -31,34 +33,34 @@ int main() {
     char ch;
     scanf(" %c", &ch);
 
-    // check if the letter has already been guessed
+    //checking if the letter was already guessed
     if (guessed_letters[ch - 'a']) {
       printf("You have already guessed the letter '%c'. Try again.\n", ch);
       continue;
     }
 
-    // mark the letter as guessed
+    //if not, we guess the letter
     guessed_letters[ch - 'a'] = 1;
 
-    // check if the letter is in the word
-    int letter_in_word = 0;
+    //now, we check if the letter even is in the word
+    int letter_in = 0;
     for (int i = 0; i < word_length; i++) {
       if (word[i] == ch) {
         current_state[i] = ch;
-        letter_in_word = 1;
+        letter_in = 1;
       }
     }
-
-    if (!letter_in_word) {
+    
+    if (!letter_in) {
       printf("Sorry, the letter '%c' is not in the word.\n", ch);
       mistakes++;
     }
   }
 
   if (mistakes == MAX_MISTAKES) {
-    printf("You lost! The word was '%s'.\n", word);
+    printf("IM SORRY, you lose! The word that you needed to guess was '%s'.\n", word);
   } else {
-    printf("Congratulations, you won! The word was '%s'.\n", word);
+    printf("WOW, you won! The word indeed was: '%s'.\n", word);
   }
 
   return 0;

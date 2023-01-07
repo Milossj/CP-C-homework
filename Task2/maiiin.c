@@ -50,13 +50,13 @@ int main() {
         letter_in = 1;
       }
     }
-    
+    //if not
     if (!letter_in) {
       printf("Sorry, the letter '%c' is not in the word.\n", ch);
       mistakes++;
     }
   }
-
+    //end
   if (mistakes == MAX_MISTAKES) {
     printf("IM SORRY, you lose! The word that you needed to guess was '%s'.\n", word);
   } else {

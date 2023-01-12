@@ -20,7 +20,7 @@ void moveElevator(char currentFloor, char destinationFloor, int *passengerCount)
     if(*passengerCount>1) *passengerCount-=1;
 }
 int main() {
-    char currentFloor = 'G'; //startin at G floor
+    char currentFloor = 'G'; //starting at G floor
     char destinationFloor;
     int passengerCount;
     printf("Welcome. You are currently on the %c floor.\n", currentFloor);

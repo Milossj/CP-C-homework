@@ -32,3 +32,21 @@ int main() {
 
     char ch;
     scanf(" %c", &ch);
+    
+    //checking if the letter was already guessed
+    if (guessed_letters[ch - 'a']) {
+      printf("You have already guessed the letter '%c'. Try again.\n", ch);
+      continue;
+    }
+
+    //if not, we guess the letter
+    guessed_letters[ch - 'a'] = 1;
+
+   // making sure the letter is in the word
+    int letter_in = 0;
+    for (int i = 0; i < word_length; i++) {
+      if (word[i] == ch) {
+        current_state[i] = ch;
+        letter_in = 1;
+      }
+    }

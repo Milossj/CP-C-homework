@@ -42,7 +42,7 @@ int main() {
     //if not, we guess the letter
     guessed_letters[ch - 'a'] = 1;
 
-   // making sure the letter is in the word
+   //making sure the letter is in the word
     int letter_in = 0;
     for (int i = 0; i < word_length; i++) {
       if (word[i] == ch) {
@@ -50,3 +50,18 @@ int main() {
         letter_in = 1;
       }
     }
+   //if it isn't
+    if (!letter_in) {
+      printf("Sorry, the letter '%c' is not in the word.\n", ch);
+      mistakes++;
+    }
+  }
+    //end
+  if (mistakes == MAX_MISTAKES) {
+    printf("IM SORRY, you lose! The word that you needed to guess was '%s'.\n", word);
+  } else {
+    printf("WOW, you won! The word indeed was: '%s'.\n", word);
+  }
+
+  return 0;
+}
